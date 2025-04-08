@@ -1,7 +1,7 @@
 import pandas as pd
 import plotly.express as px
 import streamlit as st
-        
+st.header('Aplicação do Washington')
 car_data = pd.read_csv('vehicles.csv') # lendo os dados
 hist_button = st.button('Criar histograma') # criar um botão
         
@@ -15,7 +15,6 @@ if hist_button: # se o botão for clicado
             # exibir um gráfico Plotly interativo
             st.plotly_chart(fig, use_container_width=True)
 
-            import streamlit as st
 
 # criar uma caixa de seleção
 build_histogram = st.checkbox('Criar um histograma')
