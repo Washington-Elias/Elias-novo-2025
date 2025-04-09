@@ -31,7 +31,7 @@ if scatter_button:
     st.write('Criando um gráfico de dispersão para o conjunto de dados de veículos')
 
     # Criar o gráfico de dispersão com Plotly Express
-    fig_scatter = px.scatter(car_data, x="year", y="price", title="Relação entre Ano e Preço dos Veículos")
+    fig_scatter = px.scatter(car_data, x="model_year", y="preço", title="Relação entre Ano e Preço dos Veículos")
     
     # Exibir o gráfico interativo
     st.plotly_chart(fig_scatter, use_container_width=True)
