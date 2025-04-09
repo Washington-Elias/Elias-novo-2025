@@ -3,11 +3,11 @@ import plotly.express as px
 import streamlit as st
 st.header('Anúncios de vendas de Carros')
 
-car_data = pd.read_csv('vehicles_us.csv') # lendo os dados
+car_data = pd.read_csv('vehicles.csv') # lendo os dados
 fig = px.histogram(car_data, x="odometer") # criar um histograma
 fig.show() # exibindo
 
-car_data = pd.read_csv('vehicles_us.csv') # lendo os dados
+car_data = pd.read_csv('vehicles.csv') # lendo os dados
 fig = px.scatter(car_data, x="odometer", y="price") # criar um gráfico de dispersão
 fig.show() # exibindo
 
