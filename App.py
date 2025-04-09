@@ -7,8 +7,16 @@ car_data = pd.read_csv('vehicles.csv') # lendo os dados
 fig = px.histogram(car_data, x="odometer") # criar um histograma
 fig.show() # exibindo
 
-fig = px.scatter(car_data, x="odometer", y="price") # criar um gráfico de dispersão
-fig.show() # exibindo
+# Garantindo que as colunas 'odometer' e 'price' sejam numéricas
+car_data['odometer'] = pd.to_numeric(car_data['odometer'], errors='coerce')
+car_data['price'] = pd.to_numeric(car_data['price'], errors='coerce')
+
+# Criando o gráfico de dispersão
+fig = px.scatter(car_data, x="odometer", y="price", title="Preço vs. Quilometragem do Carro", 
+                 labels={'odometer': 'Quilometragem (milhas)', 'price': 'Preço (USD)'})
+
+# Exibindo o gráfico
+fig.show()
 
 
 hist_button = st.button('Criar histograma') # criar um botão
