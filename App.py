@@ -1,21 +1,38 @@
 import pandas as pd
 import plotly.express as px
 import streamlit as st
-car_data = pd.read_csv('vehicles.csv') # lendo os dados
-st.header('Anúncios de vendas de Carros')
 
-# Garantindo que as colunas 'odometer' e 'price' sejam numéricas
-car_data['odometer'] = pd.to_numeric(car_data['odometer'], errors='coerce')
-car_data['price'] = pd.to_numeric(car_data['price'], errors='coerce')
+# Carregar o conjunto de dados
+car_data = pd.read_csv('vehicles.csv')  # Altere o caminho do arquivo CSV conforme necessário
 
-# Criando o gráfico de dispersão
-fig_scatter = px.scatter(car_data, x="odometer", y="price", title="Preço vs. Quilometragem do Carro", 
-                         labels={'odometer': 'Quilometragem (milhas)', 'price': 'Preço (USD)'})
+# Cabeçalho
+st.header('Análise do Conjunto de Dados de Veículos')
 
-# Criando o histograma de preços
-fig_histogram = px.histogram(car_data, x="price", nbins=30, title="Distribuição de Preços dos Carros", 
-                              labels={'price': 'Preço (USD)'})
+# Criar o botão para histograma
+hist_button = st.button('Criar histograma')
 
-# Exibindo os gráficos
-fig_scatter.show()
-fig_histogram.show()
+# Verificar se o botão foi clicado
+if hist_button:
+    # Escrever mensagem
+    st.write('Criando um histograma para o conjunto de dados de veículos')
+
+    # Criar o histograma com Plotly Express
+    fig_hist = px.histogram(car_data, x="odometer", title="Distribuição do Odomêtro dos Veículos")
+    
+    # Exibir o gráfico interativo
+    st.plotly_chart(fig_hist, use_container_width=True)
+
+# Criar o botão para gráfico de dispersão
+scatter_button = st.button('Criar gráfico de dispersão')
+
+# Verificar se o botão foi clicado
+if scatter_button:
+    # Escrever mensagem
+    st.write('Criando um gráfico de dispersão para o conjunto de dados de veículos')
+
+    # Criar o gráfico de dispersão com Plotly Express
+    fig_scatter = px.scatter(car_data, x="year", y="price", title="Relação entre Ano e Preço dos Veículos")
+    
+    # Exibir o gráfico interativo
+    st.plotly_chart(fig_scatter, use_container_width=True)
+
